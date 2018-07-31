@@ -1,7 +1,6 @@
 {
   "name": "liri-node-app",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "dotenv": "^6.0.0",
@@ -23,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/jace1084/liri-node-app/issues"
   },
-  "homepage": "https://github.com/jace1084/liri-node-app#readme"
+  "homepage": "https://github.com/jace1084/liri-node-app#readme",
+  "description": ""
 }

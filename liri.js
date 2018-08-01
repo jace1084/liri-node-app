@@ -31,7 +31,7 @@ switch(command){
         if(x){
           spotifySong(x);
         } else{
-          spotifySong("Fluorescent Adolescent");
+          spotifySong("Ace of Base");
         }
       break;
     
@@ -65,17 +65,17 @@ switch(command){
               console.log("Preview URL: " + songData.preview_url);
               //album name
               console.log("Album: " + songData.album.name);
-              console.log("-----------------------");
+            //   console.log("-----------------------");
               
               //adds text to log.txt
               fs.appendFile('log.txt', songData.artists[0].name);
               fs.appendFile('log.txt', songData.name);
               fs.appendFile('log.txt', songData.preview_url);
               fs.appendFile('log.txt', songData.album.name);
-              fs.appendFile('log.txt', "-----------------------");
+            //   fs.appendFile('log.txt', "-----------------------");
             }
-          } else{
-            console.log('Error occurred.');
+        //   } else{
+        //     console.log('Error occurred.');
           }
         });
       }
@@ -83,8 +83,7 @@ switch(command){
       function omdbData(movie){
         var omdbURL = "https://www.omdbapi.com/?t="
         + movie +
-        "&y=&plot=short&apikey=trilogy";
-        http://www.omdbapi.com/?i=tt3896198&apikey=70050dc7
+        "&y=&plot=short&tomatoes&apikey=trilogy";
       
         request(omdbURL, function (error, response, body){
           if(!error && response.statusCode == 200){
@@ -128,10 +127,10 @@ switch(command){
       
       }
       
-      function doThing(){
-        fs.readFile('random.txt', "utf8", function(error, data){
-          var txt = data.split(',');
+    //   function doThing(){
+    //     fs.readFile('random.txt', "utf8", function(error, data){
+    //       var txt = data.split(',');
       
-          spotifySong(txt[1]);
-        });
-      }
+    //       spotifySong(txt[1]);
+    //     });
+    //   }

@@ -115,13 +115,13 @@ switch(command){
           }
           if(movie === "Mr. Nobody"){
             console.log("-----------------------");
-            console.log("If you haven"t watched "Mr. Nobody," then you should: http://www.imdb.com/title/tt0485947/");
-            console.log("It"s on Netflix!");
+            console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
+            console.log("It's on Netflix!");
       
             //adds text to log.txt
             fs.appendFile("log.txt", "-----------------------");
-            fs.appendFile("log.txt", "If you haven"t watched "Mr. Nobody," then you should: http://www.imdb.com/title/tt0485947/");
-            fs.appendFile("log.txt", "It"s on Netflix!");
+            fs.appendFile("log.txt", "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
+            fs.appendFile("log.txt", "It's on Netflix!");
           }
         });
       

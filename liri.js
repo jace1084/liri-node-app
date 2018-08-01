@@ -83,8 +83,8 @@ switch(command){
       
       function omdbData(movie){
         var omdbURL = "https://www.omdbapi.com/?t="
-        // + movie +
-        // "&y=&plot=short&tomatoes&apikey=trilogy";
+        + movie +
+        "&y=&plot=short&tomatoes&apikey=trilogy";
       
         request(omdbURL, function (error, response, body){
           if(!error && response.statusCode == 200){

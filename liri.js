@@ -20,7 +20,7 @@ for (var i=3; i<nodeArgv.length; i++){
   } else{
     x = x + nodeArgv[i];
   }
-};
+}
 
 switch(command){
     //   case "my-tweets":
@@ -50,7 +50,8 @@ switch(command){
       default:
         console.log("{Please enter a command: my-tweets, spotify-this-song, movie-this, do-what-it-says}");
       break;
-    };
+    }
+
 
     function spotifySong(song){
         spotify.search({ type: 'track', query: song}, function(error, data){
@@ -73,12 +74,12 @@ switch(command){
               fs.appendFile('log.txt', songData.preview_url);
               fs.appendFile('log.txt', songData.album.name);
             //   fs.appendFile('log.txt', "-----------------------");
-            };
+            }
         //   } else{
         //     console.log('Error occurred.');
           }
         });
-      };
+      }
       
       function omdbData(movie){
         var omdbURL = "https://www.omdbapi.com/?t="

@@ -20,7 +20,7 @@ for (var i=3; i<nodeArgv.length; i++){
   } else{
     x = x + nodeArgv[i];
   }
-}
+};
 
 switch(command){
     //   case "my-tweets":
@@ -50,7 +50,7 @@ switch(command){
       default:
         console.log("{Please enter a command: my-tweets, spotify-this-song, movie-this, do-what-it-says}");
       break;
-    }
+    };
 
     function spotifySong(song){
         spotify.search({ type: 'track', query: song}, function(error, data){
@@ -73,17 +73,17 @@ switch(command){
               fs.appendFile('log.txt', songData.preview_url);
               fs.appendFile('log.txt', songData.album.name);
             //   fs.appendFile('log.txt', "-----------------------");
-            }
+            };
         //   } else{
         //     console.log('Error occurred.');
           }
         });
-      }
+      };
       
       function omdbData(movie){
         var omdbURL = "https://www.omdbapi.com/?t="
-        + movie +
-        "&y=&plot=short&tomatoes&apikey=trilogy";
+        // + movie +
+        // "&y=&plot=short&tomatoes&apikey=trilogy";
       
         request(omdbURL, function (error, response, body){
           if(!error && response.statusCode == 200){
@@ -117,19 +117,19 @@ switch(command){
             console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
             console.log("It's on Netflix!");
       
-            // //adds text to log.txt
-            // fs.appendFile('log.txt', "-----------------------");
-            // fs.appendFile('log.txt', "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
-            // fs.appendFile('log.txt', "It's on Netflix!");
+            //adds text to log.txt
+            fs.appendFile('log.txt', "-----------------------");
+            fs.appendFile('log.txt', "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
+            fs.appendFile('log.txt', "It's on Netflix!");
           }
         });
       
       }
       
-    //   function doThing(){
-    //     fs.readFile('random.txt', "utf8", function(error, data){
-    //       var txt = data.split(',');
+      function doThing(){
+        fs.readFile('random.txt', "utf8", function(error, data){
+          var txt = data.split(',');
       
-    //       spotifySong(txt[1]);
-    //     });
-    //   }
+          spotifySong(txt[1]);
+        });
+      }

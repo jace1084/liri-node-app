@@ -96,8 +96,7 @@ switch(command){
             console.log("Language: " + body.Language);
             console.log("Plot: " + body.Plot);
             console.log("Actors: " + body.Actors);
-            console.log("Rotten Tomatoes Rating: " + body.tomatoRating);
-            console.log("Rotten Tomatoes URL: " + body.tomatoURL);
+            console.log("Rotten Tomatoes Rating: " + body.Ratings[1].Value);
       
             //adds text to log.txt
             fs.appendFile('log.txt', "Title: " + body.Title);
@@ -107,8 +106,8 @@ switch(command){
             fs.appendFile('log.txt', "Language: " + body.Language);
             fs.appendFile('log.txt', "Plot: " + body.Plot);
             fs.appendFile('log.txt', "Actors: " + body.Actors);
-            fs.appendFile('log.txt', "Rotten Tomatoes Rating: " + body.tomatoRating);
-            fs.appendFile('log.txt', "Rotten Tomatoes URL: " + body.tomatoURL);
+            fs.appendFile('log.txt', "Rotten Tomatoes Rating: " + body.Ratings[1].Value);
+            
       
           } else{
             console.log('Error occurred.')

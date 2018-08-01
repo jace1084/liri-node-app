@@ -66,14 +66,13 @@ switch(command){
               console.log("Preview URL: " + songData.preview_url);
               //album name
               console.log("Album: " + songData.album.name);
-            //   console.log("-----------------------");
-              
+    
               //adds text to log.txt
               fs.appendFile("log.txt", songData.artists[0].name);
               fs.appendFile("log.txt", songData.name);
               fs.appendFile("log.txt", songData.preview_url);
               fs.appendFile("log.txt", songData.album.name);
-            //   fs.appendFile("log.txt", "-----------------------");
+            
             }
         //   } else{
         //     console.log("Error occurred.");

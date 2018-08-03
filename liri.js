@@ -3,10 +3,10 @@ require("dotenv").config();
 
 var keys = require("./keys.js");
 var request = require("request");
-// var twitter = require("twitter");
+var twitter = require("twitter");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
-// var client = new twitter(keys.twitterKeys);
+var client = new twitter(keys.twitterKeys);
 var fs = require("fs");
 
 var nodeArgv = process.argv;
@@ -23,15 +23,15 @@ for (var i=3; i<nodeArgv.length; i++){
 }
 
 switch(command){
-    //   case "my-tweets":
-    //     showTweets();
-    //   break;
+      case "my-tweets":
+        showTweets();
+      break;
     
       case "spotify-this-song":
         if(x){
           spotifySong(x);
         } else{
-          spotifySong("Ace of Base");
+          spotifySong("The Sign, ace of base");
         }
       break;
     
@@ -52,6 +52,26 @@ switch(command){
       break;
     }
 
+    function showTweets(){
+  //Display last 20 Tweets
+      var screenName = {screen_name: 'a.t'};
+        client.get('statuses/user_timeline', screenName, function(error, tweets){
+        if(!error){
+          for(var i = 0; i<tweets.length; i++){
+            var date = tweets[i].created_at;
+            console.log("@at65828084: " + tweets[i].text + " Created At: " + date.substring(0, 19));
+            console.log("-----------------------");
+        
+        //adds text to log.txt file
+        fs.appendFile('log.txt', "@at65828084: " + tweets[i].text + " Created At: " + date.substring(0, 19));
+        fs.appendFile('log.txt', "-----------------------");
+      }
+    }else{
+      console.log('Error occurred');
+    }
+  });
+}
+
 
     function spotifySong(song){
         spotify.search({ type: "track", query: song}, function(error, data){
@@ -68,10 +88,10 @@ switch(command){
               console.log("Album: " + songData.album.name);
     
               //adds text to log.txt
-              fs.appendFile("log.txt", songData.artists[0].name);
-              fs.appendFile("log.txt", songData.name);
-              fs.appendFile("log.txt", songData.preview_url);
-              fs.appendFile("log.txt", songData.album.name);
+              fs.appendFileSync("log.txt", songData.artists[0].name);
+              fs.appendFileSync("log.txt", songData.name);
+              fs.appendFileSync("log.txt", songData.preview_url);
+              fs.appendFileSync("log.txt", songData.album.name);
             
             }
         //   } else{
@@ -99,14 +119,14 @@ switch(command){
             console.log("Rotten Tomatoes Rating: " + body.Ratings[1].Value);
       
             //adds text to log.txt
-            fs.appendFile("log.txt", "Title: " + body.Title);
-            fs.appendFile("log.txt", "Release Year: " + body.Year);
-            fs.appendFile("log.txt", "IMdB Rating: " + body.imdbRating);
-            fs.appendFile("log.txt", "Country: " + body.Country);
-            fs.appendFile("log.txt", "Language: " + body.Language);
-            fs.appendFile("log.txt", "Plot: " + body.Plot);
-            fs.appendFile("log.txt", "Actors: " + body.Actors);
-            fs.appendFile("log.txt", "Rotten Tomatoes Rating: " + body.Ratings[1].Value);
+            fs.appendFileSync("log.txt", "Title: " + body.Title);
+            fs.appendFileSync("log.txt", "Release Year: " + body.Year);
+            fs.appendFileSync("log.txt", "IMdB Rating: " + body.imdbRating);
+            fs.appendFileSync("log.txt", "Country: " + body.Country);
+            fs.appendFileSync("log.txt", "Language: " + body.Language);
+            fs.appendFileSync("log.txt", "Plot: " + body.Plot);
+            fs.appendFileSync("log.txt", "Actors: " + body.Actors);
+            fs.appendFileSync("log.txt", "Rotten Tomatoes Rating: " + body.Ratings[1].Value);
             
       
           } else{
@@ -118,9 +138,9 @@ switch(command){
             console.log("It's on Netflix!");
       
             //adds text to log.txt
-            fs.appendFile("log.txt", "-----------------------");
-            fs.appendFile("log.txt", "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
-            fs.appendFile("log.txt", "It's on Netflix!");
+            fs.appendFileSync("log.txt", "-----------------------");
+            fs.appendFileSync("log.txt", "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
+            fs.appendFileSync("log.txt", "It's on Netflix!");
           }
         });
       

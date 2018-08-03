@@ -6,11 +6,12 @@ var request = require("request");
 var twitter = require("twitter");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
-var client = new twitter(keys.twitterKeys);
+var client = new twitter(keys.twitter);
 var fs = require("fs");
 
 var nodeArgv = process.argv;
 var command = process.argv[2];
+var inputs = nodeArgv[3];
 //movie or song
 var x = "";
 //attaches multiple word arguments
@@ -24,7 +25,7 @@ for (var i=3; i<nodeArgv.length; i++){
 
 switch(command){
       case "my-tweets":
-        showTweets();
+        twitter(inputs);
       break;
     
       case "spotify-this-song":
@@ -52,25 +53,24 @@ switch(command){
       break;
     }
 
-    function showTweets(){
-  //Display last 20 Tweets
-      var screenName = {screen_name: 'a.t'};
-        client.get('statuses/user_timeline', screenName, function(error, tweets){
-        if(!error){
-          for(var i = 0; i<tweets.length; i++){
-            var date = tweets[i].created_at;
-            console.log("@at65828084: " + tweets[i].text + " Created At: " + date.substring(0, 19));
-            console.log("-----------------------");
-        
-        //adds text to log.txt file
-        fs.appendFile('log.txt', "@at65828084: " + tweets[i].text + " Created At: " + date.substring(0, 19));
-        fs.appendFile('log.txt', "-----------------------");
-      }
-    }else{
-      console.log('Error occurred');
+    function twitter(inputs) {
+	    var params = {screen_name: inputs, count: 20};
+	
+        client.get('statuses/user_timeline', params, function(error, tweets, response) {
+          if (!error) {
+            for (i = 0; i < tweets.length; i ++){
+              console.log("Tweet: " + "'" + tweets[i].text + "'" + " Created At: " + tweets[i].created_at);
+              console.log(response);
+            
+            //adds text to log.txt file
+            fs.appendFile('log.txt', "@at65828084: " + tweets[i].text + " Created At: " + date.substring(0, 19));
+            fs.appendFile('log.txt', "-----------------------");
+          }
+        }else{
+          console.log('Error occurred');
+        }
+      });
     }
-  });
-}
 
 
     function spotifySong(song){
